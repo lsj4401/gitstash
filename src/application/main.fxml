@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.TextFlow?>
+
+<GridPane fx:id="mainWindow" alignment="CENTER" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+          minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.60"
+          xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="0.0" valignment="TOP" vgrow="NEVER"/>
+        <RowConstraints vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="32.0" minHeight="32.0" prefHeight="0.0" valignment="BOTTOM" vgrow="NEVER"/>
+    </rowConstraints>
+    <children>
+        <ScrollPane fitToWidth="true" prefHeight="200.0" prefWidth="350.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextFlow fx:id="sourceText" accessibleRole="TEXT_AREA" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                      AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+        </ScrollPane>
+        <SplitPane dividerPositions="0.49328859060402686" prefHeight="293.0" prefWidth="295.0" GridPane.rowIndex="1">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <TreeView fx:id="localFileView" layoutX="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                    <children>
+                        <TreeView fx:id="stashFileView" layoutX="1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+        <MenuBar>
+            <menus>
+                <Menu mnemonicParsing="false" text="파일">
+                    <items>
+                        <MenuItem fx:id="folderSelect" mnemonicParsing="false" onAction="#folderSelectAction" text="폴더 선택"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <children>
+                <Button mnemonicParsing="false" onMouseClicked="#clickAllStash" text="All Stash"/>
+                <Button layoutX="145.0" mnemonicParsing="false" onAction="#moveStashAction" text="All Apply"/>
+                <Button layoutX="66.0" mnemonicParsing="false" onAction="#moveLocalAction" text="move local"/>
+                <TextField fx:id="searchTextField" layoutX="240.0" onKeyTyped="#searchAction"/>
+            </children>
+        </Pane>
+        <fx:include source="logView.fxml" />
+    </children>
+</GridPane>
